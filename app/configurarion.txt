@@ -1,0 +1,9 @@
+pip install "fastapi[standard]"
+pip install pydantic-settings
+
+pip  install pdf2image
+pip install redis
+pip install numpy
+pip install pymupdf
+
+pip install pipreqs

@@ -1,0 +1,171 @@
+Analyze in detail the text contained in the attached files, You could find information about an international trade transaction involving maritime transport. Extract all relevant data for customs operations and present it in structured JSON format.
+
+## Specific instructions:
+
+1. Identify and extract all relevant fields from the document which may include, but are not limited to:
+    - Document Type
+    - Document Number
+    - Emission Date
+    - Place of Emission
+    - Shipped Date
+    - Board Date
+    - Booking No.
+    - Shipper
+    - Consignee
+    - Notify Party
+    - Vessel
+    - Voyage No.
+    - Port of Loading
+    - Port of Discharge
+    - Place of Delivery
+    - Particulars Funished By Shipper
+        - No de Containers or Packages
+        - Description of Goods
+        - Gross Weight
+        - Measurement
+    - Aditional Observations
+    - Customs and tariff data
+    - Financial and commercial information
+
+2. Organize the information in a structured JSON format with the following main sections as shown in the schema below.
+
+3. If any section or field is not present in the document, indicate "Not Specified" or leave it empty as appropriate.
+
+4. For dates, use the ISO format (YYYY-MM-DD) whenever possible.
+
+5. If you find important additional fields not in the predefined structure, add them in a section called "additionalObservations."
+
+6. If there are multiple items of a category (for example, multiple containers), include them as an array.
+
+7. IS MANDATORY Return ONLY the JSON object without any code blocks, markdown formatting, or additional commentary.
+
+8. The output should be valid JSON that can be directly parsed by a JSON parser.
+
+The expected JSON structure:
+    
+    {
+      "maritimeDocument": {
+        "documentMetadata": {
+          "documentType": "string",
+          "documentNumber": "string",
+          "emissionDate": "date",
+          "placeOfEmission": "string",
+          "shippedDate": "date",
+          "boardDate": "date",
+          "bookingNumber": "string"
+        },
+        "parties": {
+          "shipper": {
+            "name": "string",
+            "address": "string",
+            "contactInfo": "string",
+            "taxId": "string"
+          },
+          "consignee": {
+            "name": "string",
+            "address": "string",
+            "contactInfo": "string",
+            "taxId": "string"
+          },
+          "notifyParty": {
+            "name": "string",
+            "address": "string",
+            "contactInfo": "string"
+          }
+        },
+        "voyage": {
+          "vessel": {
+            "name": "string",
+            "flag": "string",
+            "imoNumber": "string"
+          },
+          "voyageNumber": "string",
+          "portOfLoading": {
+            "name": "string",
+            "code": "string",
+            "country": "string"
+          },
+          "portOfDischarge": {
+            "name": "string",
+            "code": "string",
+            "country": "string"
+          },
+          "placeOfDelivery": {
+            "name": "string",
+            "code": "string",
+            "country": "string"
+          }
+        },
+        "cargo": {
+          "containers": [
+            {
+              "containerNumber": "string",
+              "sealNumber": "string",
+              "containerType": "string",
+              "packageCount": "integer"
+            }
+          ],
+          "packages": [
+            {
+              "packageType": "string",
+              "packageDescription": "string",
+              "quantity": "integer"
+            }
+          ],
+          "goodsDescription": "string",
+          "grossWeight": {
+            "value": "number",
+            "unit": "string"
+          },
+          "measurement": {
+            "value": "number",
+            "unit": "string"
+          },
+          "marksAndNumbers": "string",
+          "dangerousGoodsInfo": "string"
+        },
+        "customsAndTariff": {
+          "harmonizedSystemCode": "string",
+          "customsDeclarationNumber": "string",
+          "exportLicenseNumber": "string",
+          "importLicenseNumber": "string",
+          "tariffClassification": "string",
+          "dutyAmount": {
+            "value": "number",
+            "currency": "string"
+          }
+        },
+        "financialInfo": {
+          "freight": {
+            "amount": "number",
+            "currency": "string",
+            "paymentTerms": "string"
+          },
+          "insurance": {
+            "amount": "number",
+            "currency": "string",
+            "policyNumber": "string"
+          },
+          "otherCharges": [
+            {
+              "description": "string",
+              "amount": "number",
+              "currency": "string"
+            }
+          ],
+          "totalValue": {
+            "amount": "number",
+            "currency": "string"
+          },
+          "incoterms": "string",
+          "paymentMethod": "string",
+          "letterOfCreditNumber": "string"
+        },
+        "additionalObservations": "string",
+        "signatures": {
+          "carrierSignature": "string",
+          "shipperSignature": "string",
+          "dateOfSignature": "date"
+        }
+      }
+    }

@@ -1,0 +1,15 @@
+# Install AWS cli 
+
+aws configure 
+
+# Install copilot cli 
+# https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
+copilot --version
+
+
+copilot app init hilucatest
+copilot env init --name dev
+copilot env deploy --name dev
+
+copilot svc init --name api
+copilot svc deploy --name api --env dev
